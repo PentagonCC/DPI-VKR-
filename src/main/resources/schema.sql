@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS cart (
     quantity INT NOT NULL
 );
 
-CREATE TABLE payments (
+CREATE TABLE IF NOT EXISTS payments (
     id SERIAL PRIMARY KEY,
     order_id INT REFERENCES orders(id),
     payment_method VARCHAR(50) NOT NULL,
