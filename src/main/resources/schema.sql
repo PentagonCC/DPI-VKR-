@@ -1,12 +1,11 @@
--- schema.sql
 
-CREATE TABLE categories (
+CREATE TABLE IF NOT EXISTS categories (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) UNIQUE NOT NULL,
     cashback INT
 );
 
-CREATE TABLE products (
+CREATE TABLE IF NOT EXISTS products (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
     category_id INT REFERENCES categories(id),
@@ -16,19 +15,19 @@ CREATE TABLE products (
     image_url VARCHAR(500)
 );
 
-CREATE TABLE attributes (
+CREATE TABLE IF NOT EXISTS attributes (
     id SERIAL PRIMARY KEY,
     name VARCHAR(255) UNIQUE NOT NULL
 );
 
-CREATE TABLE product_attributes (
+CREATE TABLE IF NOT EXISTS product_attributes (
     product_id INT REFERENCES products(id),
     attribute_id INT REFERENCES attributes(id),
     value TEXT NOT NULL,
     PRIMARY KEY (product_id, attribute_id)
 );
 
-CREATE TABLE users (
+CREATE TABLE IF NOT EXISTS users (
     id SERIAL PRIMARY KEY,
     full_name VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
@@ -37,7 +36,7 @@ CREATE TABLE users (
     bonuses DECIMAL
 );
 
-CREATE TABLE orders (
+CREATE TABLE IF NOT EXISTS orders (
     id SERIAL PRIMARY KEY,
     user_id INT REFERENCES users(id),
     total_price DECIMAL(10, 2) NOT NULL,
@@ -45,7 +44,7 @@ CREATE TABLE orders (
     created_at TIMESTAMP
 );
 
-CREATE TABLE order_items (
+CREATE TABLE IF NOT EXISTS order_items (
     id SERIAL PRIMARY KEY,
     order_id INT REFERENCES orders(id),
     product_id INT REFERENCES products(id),
@@ -53,7 +52,7 @@ CREATE TABLE order_items (
     price DECIMAL(10, 2) NOT NULL
 );
 
-CREATE TABLE cart (
+CREATE TABLE IF NOT EXISTS cart (
     id SERIAL PRIMARY KEY,
     user_id INT REFERENCES users(id),
     product_id INT REFERENCES products(id),
