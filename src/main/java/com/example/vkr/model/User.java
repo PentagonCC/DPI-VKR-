@@ -35,9 +35,9 @@ public class User {
 
     @NotNull
     @Column(name = "bonuses")
-    private Double bonuses;
+    private int bonuses;
 
-    public User(String fullName, String email, String passwordHash, String phoneNumber, Double bonuses) {
+    public User(String fullName, String email, String passwordHash, String phoneNumber, int bonuses) {
         this.fullName = fullName;
         this.email = email;
         this.passwordHash = passwordHash;
@@ -85,11 +85,11 @@ public class User {
         this.phoneNumber = phoneNumber;
     }
 
-    public Double getBonuses() {
+    public int getBonuses() {
         return bonuses;
     }
 
-    public void setBonuses(Double bonuses) {
+    public void setBonuses(int bonuses) {
         this.bonuses = bonuses;
     }
 }

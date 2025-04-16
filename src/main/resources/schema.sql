@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS users (
     email VARCHAR(255) UNIQUE NOT NULL,
     password_hash TEXT NOT NULL,
     phone VARCHAR(20),
-    bonuses DECIMAL
+    bonuses INT
 );
 
 CREATE TABLE IF NOT EXISTS orders (

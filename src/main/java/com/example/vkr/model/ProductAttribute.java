@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "product_attributes")
 @IdClass(ProductAttributesId.class)
-public class ProductAttributes {
+public class ProductAttribute {
 
     @Id
     @ManyToOne(optional = false)
@@ -25,7 +25,7 @@ public class ProductAttributes {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String value;
 
-    public ProductAttributes(Product product, Attribute attribute, String value) {
+    public ProductAttribute(Product product, Attribute attribute, String value) {
         this.product = product;
         this.attribute = attribute;
         this.value = value;

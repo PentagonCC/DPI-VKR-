@@ -5,7 +5,6 @@ import javax.validation.constraints.Digits;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.Locale;
 import java.util.Set;
 
 @Entity
@@ -41,7 +40,7 @@ public class Product {
     private String imageUrl;
 
     @OneToMany(mappedBy = "product")
-    private Set<ProductAttributes> productAttributes;
+    private Set<ProductAttribute> productAttributes;
 
     public Product(String name, Category category, Double price, int stockQuantity, String description, String imageUrl) {
         this.name = name;
@@ -60,11 +59,11 @@ public class Product {
         this.id = id;
     }
 
-    public Set<ProductAttributes> getProductAttributes() {
+    public Set<ProductAttribute> getProductAttributes() {
         return productAttributes;
     }
 
-    public void setProductAttributes(Set<ProductAttributes> productAttributes) {
+    public void setProductAttributes(Set<ProductAttribute> productAttributes) {
         this.productAttributes = productAttributes;
     }
 
