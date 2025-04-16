@@ -11,5 +11,5 @@ import java.util.List;
 public interface AttributeRepository {
 
     @Query(value = "SELECT * FROM attributes WHERE name = :name", nativeQuery = true)
-    List<Attribute> findByName(@Param("name") String name);
+    Attribute findByName(@Param("name") String name);
 }

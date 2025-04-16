@@ -6,18 +6,19 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 public interface UserRepository {
 
     @Query(value = "SELECT * FROM users WHERE email = :email", nativeQuery = true)
-    Optional<User> findByEmail(@Param("email") String email);
+    List<User> findByEmail(@Param("email") String email);
 
     @Query(value = "SELECT * FROM users WHERE phone = :phone", nativeQuery = true)
-    Optional<User> findByPhone(@Param("phone") String phone);
+    List<User> findByPhone(@Param("phone") String phone);
 
     @Modifying
     @Query(value = "UPDATE users SET bonuses = :bonuses WHERE id = :id", nativeQuery = true)
-    void updateBonus(@Param("bonuses") int bonuses, @Param("id") int id);
+    void updateBonus(@Param("bonuses") int bonuses, @Param("id") Long id);
 }
