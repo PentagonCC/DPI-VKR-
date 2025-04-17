@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/main.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap');
+    </style>
+    <title>Главная</title>
+</head>
+<body class="body">
+<div class="container">
+    <header class="header">
+        <div class="left-part">
+            <a href="/" class="logo"><span>DPI</span></a>
+            <div class="catalog-menu">
+                <span class="catalog-style">Каталог</span>
+                <span class="row"></span>
+                <ul class="dropdown" id="categoryDropdown">
+                    <li><a href="/category/1">Смартфоны</a></li>
+                    <li><a href="/category/2">Телевизоры</a></li>
+                    <li><a href="/category/3">Ноутбуки</a></li>
+                    <li><a href="/category/4">Бытовая техника</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="search-panel">
+            <input type="text" class="search-input" placeholder="Поиск...">
+            <button class="search-button"></button>
+        </div>
+        <div class="right-part">
+            <button class="cart-button"><a href="/cart"></a></button>
+            <button class="profile-button"><a href="/profile"></a></button>
+        </div>
+    </header>
+    <main>
+        <div class="intiristing-product">
+            <span class="intiristing-label-style">Возможно вас заинтересует</span>
+            <div class="view-intiristing-product">
+                <div class="product"></div>
+            </div>
+        </div>
+        <div class="popular-company">
+            <span class="popular-company-label">Популярные производители</span>
+            <div class="card-company">
+
+            </div>
+        </div>
+    </main>
+</div>
+<footer class="footer">
+    <div class="container">
+        <div class="footer-style">
+            <div class="footer-logo">
+                <span class="logo-style-footer">DPI</span>
+            </div>
+            <span class="text-style-footer">твой магазин электроники <br> и бытовой техники</span>
+            <div class="footer-info-style">
+                <span class="text-style-footer"><a href="/policy-confidence" class="a">Политика конфиденциальности</a></span>
+                <span class="text-style-footer"><a href="about-us" class="a">О компании </a></span>
+                <span class="text-style-footer">г.Казань</span>
+                <span class="text-style-footer">+79175682293</span>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="../static/js/dropDownList.js"></script>
+</body>
+</html>
