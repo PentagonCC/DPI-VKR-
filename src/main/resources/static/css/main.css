@@ -19,12 +19,17 @@ main {
 }
 
 .header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #FFFFFF;
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 15px;
-    margin-top: 10px;
+    padding-top: 10px;
 }
+
 
 .left-part {
     display: flex;
