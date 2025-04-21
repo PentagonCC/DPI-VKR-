@@ -42,6 +42,9 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private Set<ProductAttribute> productAttributes;
 
+    public Product() {
+    }
+
     public Product(String name, Category category, Double price, int stockQuantity, String description, String imageUrl) {
         this.name = name;
         this.category = category;

@@ -17,15 +17,23 @@ public class ProductService {
         return productRepository.findByCategoryId(categoryId);
     }
 
-    public List<Product> getProductByAscPrice(){
-        return productRepository.findAllOrderByPriceAsc();
+    public List<Product> getProductByAscPrice(Long categoryId){
+        return productRepository.findProductsByPriceAsc(categoryId);
     }
 
-    public List<Product> getProductByDescPrice(){
-        return productRepository.findAllOrderByPriceDesc();
+    public List<Product> getProductByDescPrice(Long categoryId){
+        return productRepository.findProductsByPriceDesc(categoryId);
     }
 
     public List<Product> getSearchedProduct(String name){
         return productRepository.searchByName(name);
+    }
+
+    public List<Product> getRandomProduct(){
+        return productRepository.findRandProduct();
+    }
+
+    public List<String> getManufacturers(Long categoryId){
+        return productRepository.findAllManufacturers(categoryId);
     }
 }

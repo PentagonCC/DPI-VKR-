@@ -18,6 +18,9 @@ public class Category {
     @Column(name = "cashback")
     private int cashBack;
 
+    public Category() {
+    }
+
     public Category(String name, int cashBack) {
         this.name = name;
         this.cashBack = cashBack;

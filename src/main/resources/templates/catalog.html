@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <link th:href="@{/css/catalog.css}" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap');
     </style>
-    <title>Главная</title>
+    <title>Профиль</title>
 </head>
 <body class="body">
 <div class="container">
@@ -18,8 +18,7 @@
                 <span class="catalog-style">Каталог</span>
                 <span class="row"></span>
                 <ul class="dropdown" id="categoryDropdown">
-                    <li th:each="category : ${categories}"><a th:href="@{'/catalog/' + ${category.id}}"
-                                                              th:text="${category.name}"></a></li>
+                    <li th:each="category : ${categories}"><a th:href="@{'/catalog/' + ${category.id}}" th:text="${category.name}"></a></li>
                 </ul>
             </div>
         </div>
@@ -28,30 +27,34 @@
             <button class="search-button"></button>
         </div>
         <div class="right-part">
-            <a href="/cart" class="cart-button"></a>
-            <a href="/profile" class="profile-button"></a>
+            <button class="cart-button"><a href="/cart"></a></button>
+            <button class="profile-button"><a href="/profile"></a></button>
         </div>
     </header>
-    <main>
-        <div class="intiristing-product">
-            <span class="intiristing-label-style">Возможно вас заинтересует</span>
-            <div class="view-intiristing-product">
-                <div th:each="product : ${products}" class="product">
-                    <a href="/" class="product-link">
-                        <img th:src="${product.imageUrl}"><br>
-                        <span th:text="${product.name}"></span>
-                    </a>
+    <main style="margin-top: 20px;">
+        <div class="catalog-content">
+            <div class="filters">
+                <span style="font-size: 24px;">Фильтры</span>
+                <div class="filter-list">
+                    <span>По цене:</span>
+                    <a th:href="@{'/catalog/' + ${categoryId} + '?sort=desc'}">Сначала дорогие</a>
+                    <a th:href="@{'/catalog/' + ${categoryId} + '?sort=asc'}">Сначала недорогие</a>
+                    <span style="margin-top: 10px;">Производитель:</span>
+                    <a href="" th:each="attribute : ${attributes}"><span th:text="${attribute}"></span></a>
                 </div>
             </div>
-        </div>
-        <div class="popular-company" style="margin-top: 20px;">
-            <span class="popular-company-label">Популярные производители</span>
-            <div class="card-company">
-                <a href="/" class="card-samsung"></a>
-                <a href="/" class="card-xiaomi"></a>
-                <a href="/" class="card-lg"></a>
-                <a href="/" class="card-dyson"></a>
-                <a href="/" class="card-apple"></a>
+            <div class="products">
+                <span style="font-size: 24px;">Каталог</span>
+                <div class="product-card" th:each="product : ${products}">
+                    <a href="/" class="product">
+                        <img th:src="${product.imageUrl}">
+                        <span th:text="${product.name}"></span>
+                    </a>
+                    <div class="price-button">
+                        <span class="price" th:text="${product.price}"></span>
+                        <button class="in-cart">В корзину</button>
+                    </div>
+                </div>
             </div>
         </div>
     </main>

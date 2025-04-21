@@ -17,9 +17,17 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query(value = "SELECT * FROM products WHERE category_id = :categoryId", nativeQuery = true)
     List<Product> findByCategoryId(@Param("categoryId") Long categoryId);
 
-    @Query(value = "SELECT * FROM products ORDER BY price ASC", nativeQuery = true)
-    List<Product> findAllOrderByPriceAsc();
+    @Query(value = "SELECT * FROM products WHERE category_id = :categoryId ORDER BY price ASC", nativeQuery = true)
+    List<Product> findProductsByPriceAsc(@Param("categoryId") Long categoryId);
 
-    @Query(value = "SELECT * FROM products ORDER BY price DESC", nativeQuery = true)
-    List<Product> findAllOrderByPriceDesc();
+    @Query(value = "SELECT * FROM products WHERE category_id = :categoryId ORDER BY price DESC", nativeQuery = true)
+    List<Product> findProductsByPriceDesc(@Param("categoryId") Long categoryId);
+
+    @Query(value = "SELECT * FROM products ORDER BY RANDOM() LIMIT 4", nativeQuery = true)
+    List<Product> findRandProduct();
+
+    @Query(value = "SELECT DISTINCT pa.value AS manufacturer FROM product_attributes pa JOIN attributes a ON" +
+            " pa.attribute_id = a.id JOIN products p ON pa.product_id = p.id WHERE a.name = 'Производитель' AND " +
+            "p.category_id = :categoryId ", nativeQuery = true)
+    List<String> findAllManufacturers(@Param("categoryId") Long categoryId);
 }
