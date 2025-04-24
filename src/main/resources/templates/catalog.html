@@ -7,7 +7,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap');
     </style>
-    <title>Профиль</title>
+    <title>Главная</title>
 </head>
 <body class="body">
 <div class="container">
@@ -18,7 +18,8 @@
                 <span class="catalog-style">Каталог</span>
                 <span class="row"></span>
                 <ul class="dropdown" id="categoryDropdown">
-                    <li th:each="category : ${categories}"><a th:href="@{'/catalog/' + ${category.id}}" th:text="${category.name}"></a></li>
+                    <li th:each="category : ${categories}"><a th:href="@{'/catalog/' + ${category.id}}"
+                                                              th:text="${category.name}"></a></li>
                 </ul>
             </div>
         </div>
@@ -35,18 +36,30 @@
         <div class="catalog-content">
             <div class="filters">
                 <span style="font-size: 24px;">Фильтры</span>
-                <div class="filter-list">
+                <div th:if="${categoryId != null}" class="filter-list">
                     <span>По цене:</span>
                     <a th:href="@{'/catalog/' + ${categoryId} + '?sort=desc'}">Сначала дорогие</a>
                     <a th:href="@{'/catalog/' + ${categoryId} + '?sort=asc'}">Сначала недорогие</a>
                     <span style="margin-top: 10px;">Производитель:</span>
-                    <a href="" th:each="attribute : ${attributes}"><span th:text="${attribute}"></span></a>
+                    <a th:href="@{'/catalog/' + ${categoryId} + '/' + ${attribute}}"
+                       th:each="attribute : ${attributes}">
+                        <span th:text="${attribute}"></span>
+                    </a>
+                </div>
+                <div th:if="${popular != null}" class="filter-list">
+                    <span>По цене:</span>
+                    <a th:href="@{'/catalog/brand/' + ${popular} + '?sort=desc'}">Сначала дорогие</a>
+                    <a th:href="@{'/catalog/brand/' + ${popular} + '?sort=asc'}">Сначала недорогие</a>
+                    <span style="margin-top: 10px;">Производитель:</span>
+                    <a th:href="@{'/catalog/brand/' + ${attribute}}" th:each="attribute : ${attributes}">
+                        <span th:text="${attribute}"></span>
+                    </a>
                 </div>
             </div>
             <div class="products">
                 <span style="font-size: 24px;">Каталог</span>
                 <div class="product-card" th:each="product : ${products}">
-                    <a href="/" class="product">
+                    <a th:href="@{'/product/' + ${product.id}}" class="product">
                         <img th:src="${product.imageUrl}">
                         <span th:text="${product.name}"></span>
                     </a>

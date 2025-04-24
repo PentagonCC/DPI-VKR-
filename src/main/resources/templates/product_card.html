@@ -7,7 +7,7 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap');
     </style>
-    <title>Главная</title>
+    <title>Товар</title>
 </head>
 <body class="body">
 <div class="container">
@@ -33,27 +33,6 @@
         </div>
     </header>
     <main>
-        <div class="intiristing-product">
-            <span class="intiristing-label-style">Возможно вас заинтересует</span>
-            <div class="view-intiristing-product">
-                <div th:each="product : ${products}" class="product">
-                    <a th:href="@{'/product/' + ${product.id}}" class="product-link">
-                        <img th:src="${product.imageUrl}"><br>
-                        <span th:text="${product.name}"></span>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="popular-company" style="margin-top: 20px;">
-            <span class="popular-company-label">Популярные производители</span>
-            <div class="card-company">
-                <a th:href="@{'/catalog/brand/Samsung'}" class="card-samsung"></a>
-                <a th:href="@{'/catalog/brand/Xiaomi'}" class="card-xiaomi"></a>
-                <a th:href="@{'/catalog/brand/LG'}" class="card-lg"></a>
-                <a th:href="@{'/catalog/brand/Dyson'}" class="card-dyson"></a>
-                <a th:href="@{'/catalog/brand/Apple'}" class="card-apple"></a>
-            </div>
-        </div>
     </main>
 </div>
 <footer class="footer">

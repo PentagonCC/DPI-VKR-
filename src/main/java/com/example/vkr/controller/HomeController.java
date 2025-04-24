@@ -42,22 +42,4 @@ public class HomeController {
         return "profile";
     }
 
-    @GetMapping("/catalog/{categoryId}")
-    public String getCatalog(@PathVariable Long categoryId,
-                             @RequestParam(required = false) String sort, Model model) {
-        List<Category> categoryList = categoryService.getAllCategories();
-        List<String> productAttributes = productService.getManufacturers(categoryId);
-        List<Product> productList;
-        if ("desc".equals(sort)) {
-            productList = productService.getProductByDescPrice(categoryId);
-        } else if ("asc".equals(sort)) {
-            productList = productService.getProductByAscPrice(categoryId);
-        } else {
-            productList = productService.getAllProductByCategory(categoryId);
-        }
-        model.addAttribute("categories", categoryList);
-        model.addAttribute("products", productList);
-        model.addAttribute("attributes", productAttributes);
-        return "catalog";
-    }
 }

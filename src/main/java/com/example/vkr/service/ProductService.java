@@ -13,27 +13,59 @@ public class ProductService {
     @Autowired
     ProductRepository productRepository;
 
-    public List<Product> getAllProductByCategory(Long categoryId){
+    public List<Product> getAllProductByCategory(Long categoryId) {
         return productRepository.findByCategoryId(categoryId);
     }
 
-    public List<Product> getProductByAscPrice(Long categoryId){
+    public List<Product> getProductByAscPrice(Long categoryId) {
         return productRepository.findProductsByPriceAsc(categoryId);
     }
 
-    public List<Product> getProductByDescPrice(Long categoryId){
+    public List<Product> getProductByDescPrice(Long categoryId) {
         return productRepository.findProductsByPriceDesc(categoryId);
     }
 
-    public List<Product> getSearchedProduct(String name){
+    public List<Product> getSearchedProduct(String name) {
         return productRepository.searchByName(name);
     }
 
-    public List<Product> getRandomProduct(){
+    public List<Product> getRandomProduct() {
         return productRepository.findRandProduct();
     }
 
-    public List<String> getManufacturers(Long categoryId){
+    public List<String> getAllManufacturers(Long categoryId) {
         return productRepository.findAllManufacturers(categoryId);
+    }
+
+    public List<Product> getByManufactureName(Long categoryId, String name) {
+        return productRepository.findByManufactureName(name, categoryId);
+    }
+
+    public List<Product> getByManufactureNamePriceAsc(Long categoryId, String name) {
+        return productRepository.findByManufactureNamePriceAsc(name, categoryId);
+    }
+
+    public List<Product> getByManufactureNamePriceDesc(Long categoryId, String name) {
+        return productRepository.findByManufactureNamePriceDesc(name, categoryId);
+    }
+
+    public List<Product> getProductByManufacture(String manufacture) {
+        return productRepository.findProductByManufacture(manufacture);
+    }
+
+    public List<String> getManufactures() {
+        return productRepository.findManufactures();
+    }
+
+    public List<Product> getProductByManufacturePriceAsc(String manufacture) {
+        return productRepository.findProductByManufacturePriceAsc(manufacture);
+    }
+
+    public List<Product> getProductByManufacturePriceDesc(String manufacture) {
+        return productRepository.findProductByManufacturePriceDesc(manufacture);
+    }
+
+    public Product getProductById(Long productId){
+        return productRepository.findProductById(productId);
     }
 }
