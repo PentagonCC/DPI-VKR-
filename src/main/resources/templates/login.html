@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap');
+    </style>
+    <title>Авторизация</title>
+</head>
+<body>
+    <main>
+        <div class="login">
+            <span class="login-label">Вход</span>
+            <form action="" method="get" class="login-form">
+                <input class="input-style" type="email" placeholder="Почта">
+                <input class="input-style" type="password" placeholder="Пароль">
+                <button class="login-btn">Войти</button>
+            </form>
+            <a th:href="@{/registration}" class="registr-link">Нет аккаунта?</a>
+        </div>
+    </main>
+</body>
+</html>

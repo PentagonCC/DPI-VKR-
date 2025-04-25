@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <link th:href="@{/css/product_card.css}" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap');
     </style>
@@ -33,6 +33,29 @@
         </div>
     </header>
     <main>
+        <div class="products">
+            <div class="product-card">
+                <div class="product">
+                    <img th:src="${product.imageUrl}">
+                    <div class="product-name-price">
+                        <span th:text="${product.name}"></span>
+                        <span class="price" th:text="${product.price} + р"></span>
+                    </div>
+                    <div class="price-button">
+                        <button class="in-cart">В корзину</button>
+                    </div>
+                </div>
+            </div>
+            <div class="product-description">
+                <span class="description-label" style="font-size: 22px; margin: 10px;">Описание</span>
+                <div class="description" th:text="${product.description}">
+                </div>
+                <div class="product-attributes">
+                    <span class="attributes-label" style="font-size: 22px; margin: 10px;">Характеристики</span><br>
+                    <span class="attributes" th:each="attribute : ${productAttributes}" th:text="${attribute.key} + ': ' + ${attribute.value}"></span>
+                </div>
+            </div>
+        </div>
     </main>
 </div>
 <footer class="footer">

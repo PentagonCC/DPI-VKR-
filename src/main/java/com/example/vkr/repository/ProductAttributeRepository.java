@@ -19,4 +19,8 @@ public interface ProductAttributeRepository extends JpaRepository<ProductAttribu
     List<ProductAttribute> findByAttributeIdAndValue(@Param("attributeId") Long attributeId,
                                                      @Param("value") String value);
 
+    @Query(value = "SELECT a.name, pa.value FROM product_attributes pa JOIN attributes a ON " +
+            "pa.attribute_id = a.id WHERE pa.product_id = :productId", nativeQuery = true)
+    List<Object[]> findAttributesByProductId(@Param("productId") Long productId);
+
 }
