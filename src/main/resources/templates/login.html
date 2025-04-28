@@ -13,9 +13,12 @@
     <main>
         <div class="login">
             <span class="login-label">Вход</span>
-            <form action="" method="get" class="login-form">
-                <input class="input-style" type="email" placeholder="Почта">
-                <input class="input-style" type="password" placeholder="Пароль">
+            <form th:action="@{/login}" method="post" class="login-form">
+                <div th:if="${param.error}" class="error-message">
+                    <p>Неверный логин или пароль!</p>
+                </div>
+                <input class="input-style" type="email" name="email" placeholder="Почта">
+                <input class="input-style" type="password" name="passwordHash" placeholder="Пароль">
                 <button class="login-btn">Войти</button>
             </form>
             <a th:href="@{/registration}" class="registr-link">Нет аккаунта?</a>

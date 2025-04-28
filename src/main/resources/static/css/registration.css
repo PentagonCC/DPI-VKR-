@@ -1,8 +1,8 @@
 .registr {
     max-width: 400px;
-    max-height: 500px;
+    max-height: 800px;
     width: 100%;
-    height: 100vh;
+    height: 60vh;
     text-align: center;
     font-family: 'Jura';
     margin: 0;

@@ -13,12 +13,20 @@
     <main>
         <div class="registr">
             <span class="registr-label">Регистрация</span>
-            <form action="" method="post" class="registr-form">
-                <input class="input-style" type="text" placeholder="Имя">
-                <input class="input-style" type="text" placeholder="Фамилия">
-                <input class="input-style" type="email" placeholder="Почта">
-                <input class="input-style" type="tel" placeholder="Телефон">
-                <input class="input-style" type="password" placeholder="Пароль">
+            <form th:action="@{/registration}" th:object="${user}" method="post" class="registr-form">
+                <div th:if="${mainFieldError}" class="global-error">
+                    <p th:text="${mainFieldError}"></p>
+                </div>
+                <input class="input-style" type="text" th:field="*{name}" placeholder="Имя">
+                <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></div>
+                <input class="input-style" type="text" th:field="*{surname}" placeholder="Фамилия">
+                <div th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" class="error"></div>
+                <input class="input-style" type="email" th:field="*{email}" placeholder="Почта">
+                <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="error"></div>
+                <input class="input-style" type="tel" th:field="*{phoneNumber}" placeholder="Телефон">
+                <div th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="error"></div>
+                <input class="input-style" type="password" th:field="*{passwordHash}" placeholder="Пароль">
+                <div th:if="${#fields.hasErrors('passwordHash')}" th:errors="*{passwordHash}" class="error"></div>
                 <button class="registr-btn" type="submit">Зарегистрироваться</button>
             </form>
             <a th:href="@{/login}" class="login-link">Есть аккаунт?</a>

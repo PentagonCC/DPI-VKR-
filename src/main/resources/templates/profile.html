@@ -36,7 +36,7 @@
         <div class="profile-content">
             <div class="left-content">
                 <a href="" class="orders-link">Мои заказы</a>
-                <span>Мои бонусы:</span>
+                <span th:text="'Мои Бонусы:' + ${user.bonuses}"></span>
             </div>
             <div class="right-content">
                 <div class="profile-image">
@@ -44,17 +44,20 @@
                 </div>
                 <div class="personal-information">
                     <div class="information-style">
-                        <label class="label-style">Имя</label>
-                    </div>
-                    <div class="information-style">
-                        <label class="label-style">Фамилия</label>
+                        <label class="label-style">Имя и фамилия</label>
+                        <span th:text="${user.fullName}" style="padding-left:5px;"></span>
                     </div>
                     <div class="information-style">
                         <label class="label-style">Телефон</label>
+                        <span th:text="${user.phoneNumber}" style="padding-left:5px;"></span>
                     </div>
                     <div class="information-style">
                         <label class="label-style">Почта</label>
+                        <span th:text="${user.email}" style="padding-left:5px;"></span>
                     </div>
+                    <form th:action="@{/logout}" method="post">
+                        <button class="exit-button" type="submit">Выйти</button>
+                    </form>
                 </div>
             </div>
         </div>
