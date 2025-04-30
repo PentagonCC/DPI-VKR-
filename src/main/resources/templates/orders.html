@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <link th:href="@{/css/orders.css}" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap');
     </style>
-    <title>Главная</title>
+    <title>Мои заказы</title>
 </head>
 <body class="body">
 <div class="container">
@@ -33,25 +33,19 @@
         </div>
     </header>
     <main>
-        <div class="intiristing-product">
-            <span class="intiristing-label-style">Возможно вас заинтересует</span>
-            <div class="view-intiristing-product">
-                <div th:each="product : ${products}" class="product">
-                    <a th:href="@{'/product/' + ${product.id}}" class="product-link">
-                        <img th:src="${product.imageUrl}"><br>
-                        <span th:text="${product.name}"></span>
-                    </a>
-                </div>
-            </div>
+        <div style="max-width: 1000px; display: flex; margin: 0 auto;">
+            <span class="orders-label">Мои заказы</span>
         </div>
-        <div class="popular-company" style="margin-top: 20px;">
-            <span class="popular-company-label">Популярные производители</span>
-            <div class="card-company">
-                <a th:href="@{'/catalog/brand/Samsung'}" class="card-samsung"></a>
-                <a th:href="@{'/catalog/brand/Xiaomi'}" class="card-xiaomi"></a>
-                <a th:href="@{'/catalog/brand/LG'}" class="card-lg"></a>
-                <a th:href="@{'/catalog/brand/Dyson'}" class="card-dyson"></a>
-                <a th:href="@{'/catalog/brand/Apple'}" class="card-apple"></a>
+        <div class="orders-content">
+            <div class="order-card">
+                <div class="header-card">
+                    <span class="order-number" th:text="'Заказ №'"></span>
+                </div>
+                <div class="main-content">
+                </div>
+                <div class="footer-card">
+                    <span class="order-price" th:text="'Сумма заказа:'"></span>
+                </div>
             </div>
         </div>
     </main>

@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link th:href="@{/css/main.css}" rel="stylesheet">
+    <link th:href="@{/css/cart.css}" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Jura:wght@300..700&display=swap');
     </style>
-    <title>Главная</title>
+    <title>Корзина</title>
 </head>
 <body class="body">
 <div class="container">
@@ -28,30 +28,28 @@
             <button class="search-button"></button>
         </div>
         <div class="right-part">
-            <a th:href="@{/cart}" class="cart-button"></a>
-            <a th:href="@{/profile}" class="profile-button"></a>
+            <a class="cart-button" th:href="@{/cart}"></a>
+            <a class="profile-button" th:href="@{/profile}"></a>
         </div>
     </header>
-    <main>
-        <div class="intiristing-product">
-            <span class="intiristing-label-style">Возможно вас заинтересует</span>
-            <div class="view-intiristing-product">
-                <div th:each="product : ${products}" class="product">
-                    <a th:href="@{'/product/' + ${product.id}}" class="product-link">
-                        <img th:src="${product.imageUrl}"><br>
+    <main style="margin-top: 20px;">
+        <div class="cart-content">
+            <div class="products">
+                <span style="font-size: 24px;">Корзина</span>
+                <div class="product-card" th:each="product : ${products}">
+                    <a th:href="@{'/product/' + ${product.id}}" class="product">
+                        <img th:src="${product.imageUrl}">
                         <span th:text="${product.name}"></span>
                     </a>
                 </div>
             </div>
-        </div>
-        <div class="popular-company" style="margin-top: 20px;">
-            <span class="popular-company-label">Популярные производители</span>
-            <div class="card-company">
-                <a th:href="@{'/catalog/brand/Samsung'}" class="card-samsung"></a>
-                <a th:href="@{'/catalog/brand/Xiaomi'}" class="card-xiaomi"></a>
-                <a th:href="@{'/catalog/brand/LG'}" class="card-lg"></a>
-                <a th:href="@{'/catalog/brand/Dyson'}" class="card-dyson"></a>
-                <a th:href="@{'/catalog/brand/Apple'}" class="card-apple"></a>
+            <div class="bonus-section">
+                <span class="bonus-have" th:text="'Доступно бонусов: ' + ${user.bonuses}"></span>
+                <span>Списать?: <input type="checkbox" class="licvidation-bonuses"></span>
+            </div>
+            <span class="total-price">Общая сумма:</span>
+            <div style="display: flex; justify-content: flex-end;">
+                <button class="reg-order-button">Оформить</button>
             </div>
         </div>
     </main>
