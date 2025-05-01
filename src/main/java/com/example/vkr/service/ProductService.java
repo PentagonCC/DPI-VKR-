@@ -3,6 +3,7 @@ package com.example.vkr.service;
 import com.example.vkr.model.Product;
 import com.example.vkr.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -67,5 +68,9 @@ public class ProductService {
 
     public Product getProductById(Long productId){
         return productRepository.findProductById(productId);
+    }
+
+    public void updateStockQuantity(int quantity, Long id) {
+        productRepository.updateStockQuantity(quantity, id);
     }
 }

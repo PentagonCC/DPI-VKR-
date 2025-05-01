@@ -2,10 +2,12 @@ package com.example.vkr.repository;
 
 import com.example.vkr.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.access.method.P;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -69,4 +71,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
             "JOIN attributes atr ON pa.attribute_id=atr.id WHERE atr.name='Производитель' AND pa.value= :manufacture " +
             "ORDER BY price ASC", nativeQuery = true)
     List<Product> findProductByManufacturePriceAsc(@Param("manufacture") String manufacture);
+
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE products SET stock_quantity = :quantity WHERE id = :id", nativeQuery = true)
+    void updateStockQuantity(@Param("quantity") int quantity, @Param("id") Long id);
 }

@@ -25,11 +25,14 @@ public class Order {
 
     @Column(nullable = false)
     @NotNull
-    private String status = OrderStatus.NEW.getTitle();
+    private String status;
 
     @Column(name = "created_at")
     @NotNull
     private LocalDateTime createdAt;
+
+    public Order() {
+    }
 
     public Order(User user, Double totalPrice, String status, LocalDateTime createdAt) {
         this.user = user;

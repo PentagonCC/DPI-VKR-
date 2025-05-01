@@ -23,7 +23,7 @@ public class Payment {
 
     @NotBlank
     @Column(name = "payment_status", nullable = false)
-    private String paymentStatus = PaymentStatus.WAITING.getTitle();
+    private String paymentStatus;
 
     public Payment(Order order, String paymentMethod, String paymentStatus) {
         this.order = order;

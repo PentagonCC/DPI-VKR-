@@ -36,20 +36,39 @@
         <div class="cart-content">
             <div class="products">
                 <span style="font-size: 24px;">Корзина</span>
-                <div class="product-card" th:each="product : ${products}">
-                    <a th:href="@{'/product/' + ${product.id}}" class="product">
-                        <img th:src="${product.imageUrl}">
-                        <span th:text="${product.name}"></span>
+                <div class="product-card" th:each="product : ${cartItems}">
+                    <a th:href="@{'/product/' + ${product.key.id}}" class="product">
+                        <img th:src="${product.key.imageUrl}">
                     </a>
+                    <div class="product-info">
+                        <span th:text="${product.key.name}"></span>
+                        <span>Количество: <br>
+                            <form th:action="@{/cart/minusQuantity}" method="post" style="display:inline;">
+                                <input type="hidden" name="productId" th:value="${product.key.id}">
+                                <button class="quantity-button" type="submit">-</button>
+                            </form>
+                            <span th:text="${product.value}"></span>
+                            <form th:action="@{/cart/plusQuantity}" method="post" style="display:inline;">
+                                <input type="hidden" name="productId" th:value="${product.key.id}">
+                                <button class="quantity-button" type="submit">+</button>
+                            </form>
+                        </span>
+                        <span th:text="'Цена: ' + ${product.key.price}"></span>
+                    </div>
                 </div>
             </div>
             <div class="bonus-section">
-                <span class="bonus-have" th:text="'Доступно бонусов: ' + ${user.bonuses}"></span>
-                <span>Списать?: <input type="checkbox" class="licvidation-bonuses"></span>
+                <span class="bonus-have" style="font-size: 18px;"
+                      th:text="'Доступно бонусов: ' + ${user.bonuses}"></span>
+                <form th:action="@{/cart}" method="get">
+                    <label style="font-size: 18px;">Списать?</label>
+                    <input type="checkbox" name="useBonuses" onchange="this.form.submit()" th:checked="${useBonuses}">
+                </form>
             </div>
-            <span class="total-price">Общая сумма:</span>
+            <span class="total-price" th:text="'Общая сумма:&nbsp;' + ${totalPrice}"></span>
             <div style="display: flex; justify-content: flex-end;">
-                <button class="reg-order-button">Оформить</button>
+                <a th:href="@{registration-order(totalPrice=${totalPrice}, bonusBalance=${bonusBalance})}"
+                   class="reg-order-button">Оформить</a>
             </div>
         </div>
     </main>

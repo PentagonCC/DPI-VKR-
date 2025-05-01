@@ -25,6 +25,9 @@ public class Cart {
     @Column(nullable = false)
     private int quantity;
 
+    public Cart() {
+    }
+
     public Cart(User user, Product product, int quantity) {
         this.user = user;
         this.product = product;

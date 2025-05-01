@@ -58,22 +58,6 @@ public class User implements UserDetails {
         this.bonuses = bonuses;
     }
 
-    public String getNameForProfile() {
-        if (fullName != null && !fullName.isEmpty()) {
-            String[] parts = fullName.split(" ", 2);
-            return parts.length > 0 ? parts[0] : "";
-        }
-        return "";
-    }
-
-    public String getSurnameForProfile() {
-        if (fullName != null && !fullName.isEmpty()) {
-            String[] parts = fullName.split(" ", 2);
-            return parts.length > 1 ? parts[1] : "";
-        }
-        return "";
-    }
-
     public String getName() {
         return name;
     }

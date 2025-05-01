@@ -10,61 +10,65 @@
     <title>Оформление</title>
 </head>
 <body>
-    <div class="container">
-        <main>
-            <div class="registration">
-                <div>
-                    <a href="/" class="logo"><span>DPI</span></a>
-                </div>
-                <span class="text-style-registration">Оформление заказа <br> на сумму:</span>
+<div class="container">
+    <main>
+        <div class="registration">
+            <div>
+                <a href="/" class="logo"><span>DPI</span></a>
             </div>
-            <span class="label-personal-data">Личные данные</span>
-            <div class="personal-information">
-                <div class="information-style">
-                    <label class="label-style">Имя и фамилия</label>
-                    <span th:text="${user.fullName}" style="padding-left:5px;"></span>
-                </div>
-                <div class="information-style">
-                    <label class="label-style">Телефон</label>
-                    <span th:text="${user.phoneNumber}" style="padding-left:5px;"></span>
-                </div>
-                <div class="information-style">
-                    <label class="label-style">Почта</label>
-                    <span th:text="${user.email}" style="padding-left:5px;"></span>
-                </div>
+            <span class="text-style-registration" th:utext="'Оформление заказа<br>на сумму: ' + ${totalPrice}"></span>
+        </div>
+        <span class="label-personal-data">Личные данные</span>
+        <div class="personal-information">
+            <div class="information-style">
+                <label class="label-style">Имя и фамилия</label>
+                <span th:text="${user.fullName}" style="padding-left:5px;"></span>
             </div>
-            <span class="deliver-label">Самовывоз из магазина: г.Казань, ул.Вахитова 56Д</span><br>
-            <span>Способ оплаты:</span>
+            <div class="information-style">
+                <label class="label-style">Телефон</label>
+                <span th:text="${user.phoneNumber}" style="padding-left:5px;"></span>
+            </div>
+            <div class="information-style">
+                <label class="label-style">Почта</label>
+                <span th:text="${user.email}" style="padding-left:5px;"></span>
+            </div>
+        </div>
+        <span class="deliver-label">Самовывоз из магазина: г.Казань, ул.Вахитова 56Д</span><br>
+        <span>Способ оплаты:</span>
+        <form th:action="@{/registration-order/accept}" method="post">
             <div class="payment-options">
-                <input type="radio" id="pay-on-delivery" name="payment" value="delivery" hidden>
+                <input type="radio" id="pay-on-delivery" name="paymentMethod" value="delivery" hidden required>
                 <label for="pay-on-delivery" class="payment-option">При получении</label>
-                <input type="radio" id="pay-online" name="payment" value="online" hidden>
+                <input type="radio" id="pay-online" name="paymentMethod" value="online" hidden required>
                 <label for="pay-online" class="payment-option">Онлайн</label>
             </div>
             <div class="accept">
+                <input type="hidden" name="bonusBalance" th:value="${bonusBalance}">
+                <input type="hidden" name="totalPrice" th:value="${totalPrice}"/>
                 <button class="accept-btn">Подтвердить заказ</button>
                 <span class="accept-description">При оплате онлайн чек будет отправлен на почту</span>
             </div>
-            <span class="accept-policy">Подтверждая заказ, Вы соглашаетесь с услвиями <a href="" class="rule-style"> &nbsp;политики конфиденциальности &nbsp; </a> и 
-                <a href=""class="rule-style"> &nbsp;правилами продажи.</a></span>
-        </main> 
-    </div>
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-style">
-                <div class="footer-logo">
-                    <span class="logo-style-footer">DPI</span>
-                </div>
-                <span class="text-style-footer">твой магазин электроники <br> и бытовой техники</span>
-                <div class="footer-info-style">
+        </form>
+        <span class="accept-policy">Подтверждая заказ, Вы соглашаетесь с услвиями <a href="" class="rule-style"> &nbsp;политики конфиденциальности &nbsp; </a> и
+                <a href="" class="rule-style"> &nbsp;правилами продажи.</a></span>
+    </main>
+</div>
+<footer class="footer">
+    <div class="container">
+        <div class="footer-style">
+            <div class="footer-logo">
+                <span class="logo-style-footer">DPI</span>
+            </div>
+            <span class="text-style-footer">твой магазин электроники <br> и бытовой техники</span>
+            <div class="footer-info-style">
                     <span class="text-style-footer"><a href="/policy-confidence"
                                                        class="a">Политика конфиденциальности</a></span>
-                    <span class="text-style-footer"><a href="/about-us" class="a">О компании </a></span>
-                    <span class="text-style-footer">г.Казань</span>
-                    <span class="text-style-footer">+79175682293</span>
-                </div>
+                <span class="text-style-footer"><a href="/about-us" class="a">О компании </a></span>
+                <span class="text-style-footer">г.Казань</span>
+                <span class="text-style-footer">+79175682293</span>
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
 </body>
 </html>

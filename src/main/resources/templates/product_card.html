@@ -29,7 +29,7 @@
         </div>
         <div class="right-part">
             <a class="cart-button" th:href="@{/cart}"></a>
-            <a class="profile-button" href="@{/profile}"></a>
+            <a class="profile-button" th:href="@{/profile}"></a>
         </div>
     </header>
     <main>
@@ -42,7 +42,9 @@
                         <span class="price" th:text="${product.price} + р"></span>
                     </div>
                     <div class="price-button">
-                        <button class="in-cart">В корзину</button>
+                        <form th:action="@{'/product/' + ${product.id}}" method="post" style="margin-right: 100px;">
+                            <button class="in-cart" type="submit">В корзину</button>
+                        </form>
                     </div>
                 </div>
             </div>
