@@ -2,6 +2,7 @@ package com.example.vkr.service;
 
 import com.example.vkr.model.Order;
 import com.example.vkr.model.OrderStatus;
+import com.example.vkr.model.Product;
 import com.example.vkr.model.User;
 import com.example.vkr.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class OrderService {
@@ -26,5 +28,9 @@ public class OrderService {
         Order order = new Order(user, totalPrice, status, createdAt);
         orderRepository.save(order);
         return order.getId();
+    }
+
+    public List<Object[]> getOrdersWithProduct(Long userId){
+        return orderRepository.findOrderWithProduct(userId);
     }
 }

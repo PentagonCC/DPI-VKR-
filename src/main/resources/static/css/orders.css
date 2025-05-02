@@ -200,6 +200,7 @@ main {
     border-color: #048399;
     border-width: 1px;
     border-style: solid;
+    margin-top: 10px;
 }
 
 .header-card{
@@ -235,7 +236,13 @@ main {
 .order-price {
     display: flex;
     margin: 5px;
-    margin-right: 100px;
+    margin-right: 20px;
+}
+
+.status-label {
+    display: flex;
+    margin: 5px;
+    margin-right: 20px;
 }
 
 .orders-content {

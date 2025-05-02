@@ -37,14 +37,18 @@
             <span class="orders-label">Мои заказы</span>
         </div>
         <div class="orders-content">
-            <div class="order-card">
+            <div class="order-card" th:each="order : ${orderMap}">
                 <div class="header-card">
-                    <span class="order-number" th:text="'Заказ №'"></span>
+                    <span class="order-number" th:text="'Заказ №' + ${order.key.id}"></span>
                 </div>
-                <div class="main-content">
+                <div class="main-content" style="min-height: 50px;">
+                    <ul style="list-style-type: none;">
+                        <li style="margin: 5px;" th:each="product : ${order.value}" th:text="${product}"></li>
+                    </ul>
                 </div>
                 <div class="footer-card">
-                    <span class="order-price" th:text="'Сумма заказа:'"></span>
+                    <span class="status-label" th:text="'Статус:&nbsp;' + ${order.key.status}"></span>
+                    <span class="order-price" th:text="'Сумма заказа:&nbsp;' + ${order.key.totalPrice}"></span>
                 </div>
             </div>
         </div>

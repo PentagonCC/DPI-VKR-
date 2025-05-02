@@ -36,7 +36,10 @@
         <div class="cart-content">
             <div class="products">
                 <span style="font-size: 24px;">Корзина</span>
-                <div class="product-card" th:each="product : ${cartItems}">
+                <div th:if="${cartItems.size() == 0}">
+                    <p>Ваша корзина пуста</p>
+                </div>
+                <div class="product-card" th:each="product : ${cartItems}" th:unless="${cartItems.size() == 0}">
                     <a th:href="@{'/product/' + ${product.key.id}}" class="product">
                         <img th:src="${product.key.imageUrl}">
                     </a>
@@ -57,7 +60,7 @@
                     </div>
                 </div>
             </div>
-            <div class="bonus-section">
+            <div class="bonus-section" th:unless="${cartItems.size() == 0}">
                 <span class="bonus-have" style="font-size: 18px;"
                       th:text="'Доступно бонусов: ' + ${user.bonuses}"></span>
                 <form th:action="@{/cart}" method="get">
@@ -65,8 +68,8 @@
                     <input type="checkbox" name="useBonuses" onchange="this.form.submit()" th:checked="${useBonuses}">
                 </form>
             </div>
-            <span class="total-price" th:text="'Общая сумма:&nbsp;' + ${totalPrice}"></span>
-            <div style="display: flex; justify-content: flex-end;">
+            <span class="total-price" th:text="'Общая сумма:&nbsp;' + ${totalPrice}" th:unless="${cartItems.size() == 0}"></span>
+            <div style="display: flex; justify-content: flex-end;" th:unless="${cartItems.size() == 0}">
                 <a th:href="@{registration-order(totalPrice=${totalPrice}, bonusBalance=${bonusBalance})}"
                    class="reg-order-button">Оформить</a>
             </div>

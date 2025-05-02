@@ -4,6 +4,10 @@ import javax.persistence.*;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Objects;
+
+import org.springframework.data.annotation.Transient;
 
 @Entity
 @Table(name = "orders")
@@ -32,6 +36,12 @@ public class Order {
     private LocalDateTime createdAt;
 
     public Order() {
+    }
+
+    public Order(Long id, Double totalPrice, String status) {
+        this.id = id;
+        this.totalPrice = totalPrice;
+        this.status = status;
     }
 
     public Order(User user, Double totalPrice, String status, LocalDateTime createdAt) {
@@ -79,5 +89,19 @@ public class Order {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return Objects.equals(id, order.id) && Objects.equals(user, order.user) && Objects.equals(totalPrice,
+                order.totalPrice) && Objects.equals(status, order.status) && Objects.equals(createdAt, order.createdAt);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, user, totalPrice, status, createdAt);
     }
 }

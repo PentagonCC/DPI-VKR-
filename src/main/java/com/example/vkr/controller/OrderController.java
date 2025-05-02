@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,6 +56,25 @@ public class OrderController {
     @GetMapping("/orders")
     public String getOrdersPage(@AuthenticationPrincipal User user, Model model){
         List<Category> categoryList = categoryService.getAllCategories();
+        List<Object[]> orderList = orderService.getOrdersWithProduct(user.getId());
+        Map<Order, List<String>> orderMap = new HashMap<>();
+        for(Object[] order : orderList){
+            BigDecimal totalPrice = (BigDecimal) order[0];
+            int orderId = (int) order[1];
+            String status = (String) order[2];
+            String name = (String) order[3];
+
+            Order key = new Order((long) orderId, totalPrice.doubleValue(), status);
+
+            if(orderMap.containsKey(key)){
+                orderMap.get(key).add(name);
+            }else {
+                List<String> productNameList = new ArrayList<>();
+                productNameList.add(name);
+                orderMap.put(key, productNameList);
+            }
+        }
+        model.addAttribute("orderMap", orderMap);
         model.addAttribute("categories", categoryList);
         model.addAttribute("user", user);
         return "orders";
