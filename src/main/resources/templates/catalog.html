@@ -24,12 +24,14 @@
             </div>
         </div>
         <div class="search-panel">
-            <input type="text" class="search-input" placeholder="Поиск...">
-            <button class="search-button"></button>
+            <form th:action="@{/catalog}" method="get" class="search-form">
+                <input type="text" name="keyword" class="search-input" placeholder="Поиск...">
+                <button class="search-button" type="submit"></button>
+            </form>
         </div>
         <div class="right-part">
             <a class="cart-button" th:href="@{/cart}"></a>
-            <a class="profile-button" href="@{/profile}"></a>
+            <a class="profile-button" th:href="@{/profile}"></a>
         </div>
     </header>
     <main style="margin-top: 20px;">
@@ -55,6 +57,15 @@
                         <span th:text="${attribute}"></span>
                     </a>
                 </div>
+                <div th:if="${keyword != null}" class="filter-list">
+                    <span>По цене:</span>
+                    <a th:href="@{'/catalog' + '?keyword=' + ${keyword} + '&sort=desc'}">Сначала дорогие</a>
+                    <a th:href="@{'/catalog'+ '?keyword=' + ${keyword} + '&sort=asc'}">Сначала недорогие</a>
+                    <span style="margin-top: 10px;">Производитель:</span>
+                    <a th:href="@{'/catalog/brand/' + ${attribute}}" th:each="attribute : ${attributes}">
+                        <span th:text="${attribute}"></span>
+                    </a>
+                </div>
             </div>
             <div class="products">
                 <span style="font-size: 24px;">Каталог</span>
@@ -65,7 +76,9 @@
                     </a>
                     <div class="price-button">
                         <span class="price" th:text="${product.price}"></span>
-                        <button class="in-cart">В корзину</button>
+                        <form th:action="@{'/product/' + ${product.id}}" method="post" style="margin-right: 100px;">
+                            <button class="in-cart" type="submit">В корзину</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -80,9 +93,9 @@
             </div>
             <span class="text-style-footer">твой магазин электроники <br> и бытовой техники</span>
             <div class="footer-info-style">
-                <span class="text-style-footer"><a href="/policy-confidence"
+                <span class="text-style-footer"><a th:href="@{/policy-confidence}"
                                                    class="a">Политика конфиденциальности</a></span>
-                <span class="text-style-footer"><a href="/about-us" class="a">О компании </a></span>
+                <span class="text-style-footer"><a th:href="@{/about-us}" class="a">О компании </a></span>
                 <span class="text-style-footer">г.Казань</span>
                 <span class="text-style-footer">+79175682293</span>
             </div>

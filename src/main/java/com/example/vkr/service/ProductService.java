@@ -30,6 +30,14 @@ public class ProductService {
         return productRepository.searchByName(name);
     }
 
+    public List<Product> getSearchedProductPriceAsc(String name){
+        return productRepository.searchByNamePriceAsc(name);
+    }
+
+    public List<Product> getSearchedProductPriceDesc(String name){
+        return productRepository.searchByNamePriceDesc(name);
+    }
+
     public List<Product> getRandomProduct() {
         return productRepository.findRandProduct();
     }

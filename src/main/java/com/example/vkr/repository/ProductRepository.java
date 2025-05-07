@@ -17,6 +17,14 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     @Query(value = "SELECT * FROM products WHERE LOWER(name) LIKE LOWER(CONCAT('%', :keyword, '%'))", nativeQuery = true)
     List<Product> searchByName(@Param("keyword") String keyword);
 
+    @Query(value = "SELECT * FROM products WHERE LOWER(name) LIKE LOWER(CONCAT('%', :keyword, '%')) ORDER BY price ASC",
+            nativeQuery = true)
+    List<Product> searchByNamePriceAsc(@Param("keyword") String keyword);
+
+    @Query(value = "SELECT * FROM products WHERE LOWER(name) LIKE LOWER(CONCAT('%', :keyword, '%')) ORDER BY price DESC",
+            nativeQuery = true)
+    List<Product> searchByNamePriceDesc(@Param("keyword") String keyword);
+
     @Query(value = "SELECT * FROM products WHERE category_id = :categoryId", nativeQuery = true)
     List<Product> findByCategoryId(@Param("categoryId") Long categoryId);
 

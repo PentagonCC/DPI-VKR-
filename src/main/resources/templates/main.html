@@ -24,8 +24,10 @@
             </div>
         </div>
         <div class="search-panel">
-            <input type="text" class="search-input" placeholder="Поиск...">
-            <button class="search-button"></button>
+            <form th:action="@{/catalog}" method="get" class="search-form">
+                <input type="text" name="keyword" class="search-input" placeholder="Поиск...">
+                <button class="search-button" type="submit"></button>
+            </form>
         </div>
         <div class="right-part">
             <a th:href="@{/cart}" class="cart-button"></a>
@@ -64,9 +66,9 @@
             </div>
             <span class="text-style-footer">твой магазин электроники <br> и бытовой техники</span>
             <div class="footer-info-style">
-                <span class="text-style-footer"><a href="/policy-confidence"
+                <span class="text-style-footer"><a th:href="@{/policy-confidence}"
                                                    class="a">Политика конфиденциальности</a></span>
-                <span class="text-style-footer"><a href="/about-us" class="a">О компании </a></span>
+                <span class="text-style-footer"><a th:href="@{/about-us}" class="a">О компании </a></span>
                 <span class="text-style-footer">г.Казань</span>
                 <span class="text-style-footer">+79175682293</span>
             </div>

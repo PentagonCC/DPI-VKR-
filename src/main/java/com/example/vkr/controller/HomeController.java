@@ -45,4 +45,19 @@ public class HomeController {
         return "profile";
     }
 
+    @GetMapping("/policy-confidence")
+    public String getPolicyConfidence(){
+        return "policy-confidence";
+    }
+
+    @GetMapping("/about-us")
+    public String getAboutUs(){
+        return "about-us";
+    }
+
+    @GetMapping("/selling-rule")
+    public String getSellingRule(){
+        return "selling-rule";
+    }
+
 }

@@ -49,8 +49,8 @@
                 <span class="accept-description">При оплате онлайн чек будет отправлен на почту</span>
             </div>
         </form>
-        <span class="accept-policy">Подтверждая заказ, Вы соглашаетесь с услвиями <a href="" class="rule-style"> &nbsp;политики конфиденциальности &nbsp; </a> и
-                <a href="" class="rule-style"> &nbsp;правилами продажи.</a></span>
+        <span class="accept-policy">Подтверждая заказ, Вы соглашаетесь с услвиями <a th:href="@{/policy-confidence}" class="rule-style"> &nbsp;политики конфиденциальности &nbsp; </a> и
+                <a th:href="@{/selling-rule}" class="rule-style"> &nbsp;правилами продажи.</a></span>
     </main>
 </div>
 <footer class="footer">
@@ -61,9 +61,9 @@
             </div>
             <span class="text-style-footer">твой магазин электроники <br> и бытовой техники</span>
             <div class="footer-info-style">
-                    <span class="text-style-footer"><a href="/policy-confidence"
+                    <span class="text-style-footer"><a th:href="@{/policy-confidence}"
                                                        class="a">Политика конфиденциальности</a></span>
-                <span class="text-style-footer"><a href="/about-us" class="a">О компании </a></span>
+                <span class="text-style-footer"><a th:href="@{/about-us}" class="a">О компании </a></span>
                 <span class="text-style-footer">г.Казань</span>
                 <span class="text-style-footer">+79175682293</span>
             </div>

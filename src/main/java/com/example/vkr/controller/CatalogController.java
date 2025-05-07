@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
@@ -82,6 +83,27 @@ public class CatalogController {
         model.addAttribute("attributes", productAttributes);
         model.addAttribute("products", productList);
         model.addAttribute("popular", popularManufacture);
+        model.addAttribute("user", user);
+        return "catalog";
+    }
+
+    @GetMapping("/catalog")
+    public String getCatalogWithSearchProducts(@AuthenticationPrincipal User user, @RequestParam String keyword,
+                                               @RequestParam(required = false) String sort, Model model) {
+        List<Category> categoryList = categoryService.getAllCategories();
+        List<String> productAttributes = productService.getManufactures();
+        List<Product> productList;
+        if ("desc".equals(sort)) {
+            productList = productService.getSearchedProductPriceDesc(keyword);
+        } else if ("asc".equals(sort)) {
+            productList = productService.getSearchedProductPriceAsc(keyword);
+        } else {
+            productList = productService.getSearchedProduct(keyword);
+        }
+        model.addAttribute("categories", categoryList);
+        model.addAttribute("attributes", productAttributes);
+        model.addAttribute("products", productList);
+        model.addAttribute("keyword", keyword);
         model.addAttribute("user", user);
         return "catalog";
     }

@@ -83,6 +83,13 @@ main {
     margin-top: 3px;
 }
 
+.search-form {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
 .search-panel {
     display: flex;
     max-width: 725px;
@@ -92,6 +99,7 @@ main {
     background-color: #D9D9D9;
     border-radius: 10px;
     align-items: center;
+    justify-content: space-between;
 }
 
 .search-input {
